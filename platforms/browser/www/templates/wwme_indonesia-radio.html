@@ -1,0 +1,41 @@
+	<ion-view view-title=" Live" hide-nav-bar="false" >
+		<!-- content -->
+		<ion-content delegate-handle="top" lazy-scroll  id="page-radio" class=" page-radio">
+		
+<div class="audioplayer-box">
+
+	<div class="audioplayer-card text-center">
+    
+        <div ng-if="radio_toggle_state" class="audioplayer-logo">
+            <ion-spinner ng-if="state==0" class="audioplayer-spinner" icon="dots"></ion-spinner>
+            <ion-spinner ng-if="state==1" class="audioplayer-spinner" icon="ios-small"></ion-spinner>
+            <ion-spinner ng-if="state==2" class="audioplayer-spinner" icon="ios"></ion-spinner>
+            <ion-spinner ng-if="state==3" class="audioplayer-spinner" icon="ios"></ion-spinner>
+            <ion-spinner ng-if="state==4" class="audioplayer-spinner" icon="ripple"></ion-spinner>
+        </div>
+      
+        <div ng-if="!radio_toggle_state" class="audioplayer-logo">
+            <div class="audioplayer-spinner">
+                <i class="ion-volume-mute"></i>
+            </div>
+        </div>
+      
+        <div class="audioplayer-title">
+        	<h3>Radio WWME Indonesia</h3>     
+            <p>As I Have Loved You</p>   
+        </div>
+    		
+        <div class="text-center radio-button">
+    		<button class="button button-block button-assertive" ng-click="radioTogglePlay()">
+              <i ng-if="radio_toggle_state" class="icon ion-play"></i>
+              <i ng-if="!radio_toggle_state" class="icon ion-pause"></i>
+    		</button>
+            <span class="calm">{{ stateText }}</span>
+    	</div>
+        
+	</div>
+</div>
+
+		</ion-content>
+		<!-- ./content -->
+	</ion-view>
