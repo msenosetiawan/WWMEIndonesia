@@ -358,10 +358,10 @@ angular.module("wwme_indonesia.controllers", [])
 	popover_template += "	<ion-content>";
 	popover_template += "		<ion-list>";
 	popover_template += "			<a  class=\"item dark-ink\" ng-href=\"#/wwme_indonesia/about_us\" ng-click=\"popover.hide()\">";
-	popover_template += "			{{ 'About Us' | translate }}";
+	popover_template += "			{{ 'Tentang Kami' | translate }}";
 	popover_template += "			</a>";
 	popover_template += "			<a  class=\"item dark-ink\" ng-click=\"showLanguageDialog()\" >";
-	popover_template += "			{{ 'Language' | translate }}";
+	popover_template += "			{{ 'Bahasa' | translate }}";
 	popover_template += "			</a>";
 	popover_template += "		</ion-list>";
 	popover_template += "	</ion-content>";
