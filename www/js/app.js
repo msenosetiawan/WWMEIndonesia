@@ -61,6 +61,22 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 				}
 			}, 5000);
 
+			//required: cordova plugin add onesignal-cordova-plugin --save
+			if(window.plugins && window.plugins.OneSignal){
+				window.plugins.OneSignal.enableNotificationsWhenActive(true);
+				var notificationOpenedCallback = function(jsonData){
+					try {
+						$timeout(function(){
+							$window.location = "#/wwme_indonesia/" + jsonData.notification.payload.additionalData.page ;
+						},200);
+					} catch(e){
+						console.log("onesignal:" + e);
+					}
+				}
+				window.plugins.OneSignal.startInit("b2b8ca5f-f377-4aee-a843-8260526bfe88").handleNotificationOpened(notificationOpenedCallback).endInit();
+			}
+
+
 		});
 		$ionicPlatform.registerBackButtonAction(function (e){
 			if($ionicHistory.backView()){
@@ -277,19 +293,6 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 			"wwme_indonesia-side_menus" : {
 						templateUrl:"templates/wwme_indonesia-jadwal_weme.html",
 						controller: "jadwal_wemeCtrl"
-					},
-			"fabButtonUp" : {
-						template: '',
-					},
-		}
-	})
-
-	.state("wwme_indonesia.radio", {
-		url: "/radio",
-		views: {
-			"wwme_indonesia-side_menus" : {
-						templateUrl:"templates/wwme_indonesia-radio.html",
-						controller: "radioCtrl"
 					},
 			"fabButtonUp" : {
 						template: '',

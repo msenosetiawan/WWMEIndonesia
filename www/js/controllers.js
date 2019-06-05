@@ -160,6 +160,96 @@ angular.module("wwme_indonesia.controllers", [])
 		$rootScope.changeFontSize(val);
 	};
 	
+	// TODO: indexCtrl --|-- $rootScope.modal_notification
+	var modal_notification = "";
+	$rootScope.disable_notification_option = false;
+	modal_notification += "<ion-modal-view>";
+	modal_notification += "<ion-header-bar class=\"bar bar-header bar-positive-900\">";
+	modal_notification += "<h1 class=\"title\">{{ 'Notifications' | translate }}</h1>";
+	modal_notification += "</ion-header-bar>";
+	modal_notification += "<ion-content class=\"\">";
+	modal_notification += "<div class=\"list\">";
+	modal_notification += "<ion-toggle ng-model=\"disable_notification_option\"  ng-click=\"tryChangeNotification(disable_notification_option)\">";
+	modal_notification += "{{ 'Disable Alerts' | translate }}";
+	modal_notification += "</ion-toggle>";
+	modal_notification += "<div class=\"item\">";
+	modal_notification += "<button class=\"button button-full button-positive-900\" ng-click=\"closeNotificationDialog()\">{{ 'Close' | translate }}</button>";
+	modal_notification += "</div>";
+	modal_notification += "</div>";
+	modal_notification += "</ion-content>";
+	modal_notification += "</ion-modal-view>";
+	
+	$rootScope.notificationDialog = $ionicModal.fromTemplate(modal_notification,{
+		scope: $scope,
+		animation: "slide-in-up"
+	});
+	
+	$rootScope.showNotificationDialog = function(){
+		get_notification();
+		$rootScope.notificationDialog.show();
+	};
+	
+	$rootScope.closeNotificationDialog = function(){
+		$rootScope.notificationDialog.hide();
+		$rootScope.closeMenuPopover();
+	};
+	
+	var get_notification =  function(){
+		localforage.getItem("disable_notification_option", function(err, value){
+			var notification_value = false ;
+			if(value === null){
+				notification_value = false ;
+			}
+			if(value === true){
+				notification_value = true ;
+			}else{
+				notification_value = false ;
+			}
+			localforage.setItem("disable_notification_option",notification_value);
+			$rootScope.disable_notification_option = notification_value ;
+		}).then(function(value){
+			var notification_value = false ;
+			if(value === null){
+				notification_value = false ;
+			}
+			if(value === true){
+				notification_value = true ;
+			}else{
+				notification_value = false ;
+			}
+			localforage.setItem("disable_notification_option",notification_value);
+			$rootScope.disable_notification_option = notification_value ;
+		}).catch(function (err){
+			localforage.setItem("disable_notification_option",false);
+			$rootScope.disable_notification_option = false ;
+		})
+	
+	}
+	
+	get_notification();
+	
+	
+	$rootScope.tryChangeNotification = function(val){
+		$rootScope.changeNotification(val);
+	};
+	
+	
+	$rootScope.changeNotification = function(val){
+		$rootScope.disable_notification_option = val;
+		localforage.setItem("disable_notification_option",val);
+	};
+	
+	
+	$scope.$watch("disable_notification_option", function (newValue, oldValue, scope) {
+		if(window.plugins && window.plugins.OneSignal){
+			if(newValue == true){
+				window.plugins.OneSignal.setSubscription(false);
+			}else{
+				window.plugins.OneSignal.setSubscription(true);
+			}
+		}
+	});
+	
 	// TODO: indexCtrl --|-- $rootScope.clearCacheApp
 	$rootScope.clearCacheApp = function(){
 		var confirmPopup = $ionicPopup.confirm({
@@ -666,140 +756,6 @@ $ionicConfig.backButton.text("");
 		try {
 			
 $ionicConfig.backButton.text("");			
-		} catch(e){
-		}
-	}
-	$scope.rating = {};
-	$scope.rating.max = 5;
-	
-	// animation ink (ionic-material)
-	ionicMaterialInk.displayEffect();
-	controller_by_user();
-})
-
-// TODO: radioCtrl --|-- 
-.controller("radioCtrl", function($ionicConfig,$scope,$rootScope,$state,$location,$ionicScrollDelegate,$ionicListDelegate,$http,$httpParamSerializer,$stateParams,$timeout,$interval,$ionicLoading,$ionicPopup,$ionicPopover,$ionicActionSheet,$ionicSlideBoxDelegate,$ionicHistory,ionicMaterialInk,ionicMaterialMotion,$window,$ionicModal,base64,md5,$document,$sce,$ionicGesture,$translate,tmhDynamicLocale){
-	
-	$rootScope.headerExists = true;
-	$rootScope.ionWidth = $document[0].body.querySelector(".view-container").offsetWidth || 412;
-	$rootScope.grid64 = parseInt($rootScope.ionWidth / 64) ;
-	$rootScope.grid80 = parseInt($rootScope.ionWidth / 80) ;
-	$rootScope.grid128 = parseInt($rootScope.ionWidth / 128) ;
-	$rootScope.grid256 = parseInt($rootScope.ionWidth / 256) ;
-	$rootScope.last_edit = "page_builder" ;
-	$scope.$on("$ionicView.afterEnter", function (){
-		var page_id = $state.current.name ;
-		$rootScope.page_id = page_id.replace(".","-") ;
-	});
-	if($rootScope.headerShrink == true){
-		$scope.$on("$ionicView.enter", function(){
-			$scope.scrollTop();
-		});
-	};
-	// TODO: radioCtrl --|-- $scope.scrollTop
-	$rootScope.scrollTop = function(){
-		$timeout(function(){
-			$ionicScrollDelegate.$getByHandle("top").scrollTop();
-		},100);
-	};
-	// TODO: radioCtrl --|-- $scope.toggleGroup
-	$scope.toggleGroup = function(group) {
-		if ($scope.isGroupShown(group)) {
-			$scope.shownGroup = null;
-		} else {
-			$scope.shownGroup = group;
-		}
-	};
-	
-	$scope.isGroupShown = function(group) {
-		return $scope.shownGroup === group;
-	};
-	
-	// TODO: radioCtrl --|-- $scope.redirect
-	// redirect
-	$scope.redirect = function($url){
-		$window.location.href = $url;
-	};
-	
-	// Set Motion
-	$timeout(function(){
-		ionicMaterialMotion.slideUp({
-			selector: ".slide-up"
-		});
-	}, 300);
-	// code 
-
-	// TODO: radioCtrl --|-- controller_by_user
-	// controller by user 
-	function controller_by_user(){
-		try {
-			
-
-        
-// TODO: radio https://idhq.radiorodja.com/;stream.mp3?_=3
-
-$rootScope.radioRadioURL = "https://idhq.radiorodja.com/;stream.mp3?_=3";
-$rootScope.radio_toggle_state = false;
-
-if (radioAudioPlayer == null) {
-	var radioAudioPlayer = $document[0].createElement("audio");
-	radioAudioPlayer.src = $sce.trustAsResourceUrl($rootScope.radioRadioURL);
-	try {
-		radioAudioPlayer.play();
-		$rootScope.radio_toggle_state = true;
-	} catch (e) {
-		$rootScope.radio_toggle_state = false;
-        //console.log(e);
-	}
-}
-
-$rootScope.radioTogglePlay = function() {
-	if ($rootScope.radio_toggle_state == false) {
-		try {
-			radioAudioPlayer.play();
-			$rootScope.radio_toggle_state = true;
-		} catch (e) {
-			$rootScope.radio_toggle_state = false;
-            //console.log(e);
-		}
-	} else {
-		$rootScope.radio_toggle_state = false;
-		radioAudioPlayer.pause();
-	}
-}
-
-
-$interval(function() {
-	$rootScope.state = radioAudioPlayer.readyState;
-    $rootScope.stateText = "";
-	switch($rootScope.state){
-	   case 0:
-            $rootScope.stateText = "no information";
-            break;
-	   case 1:
-            $rootScope.stateText = "initialized";
-            break;
-	   case 2:
-            $rootScope.stateText = "available";
-            break;
-	   case 3:
-            $rootScope.stateText = "playback position";
-            break;
-	   case 4:
-            $rootScope.stateText = "can be played";
-            break;
-	}
- 
-    
-}, 500);
-
-
-$scope.$on("$ionicView.beforeLeave", function (){
-    $rootScope.radio_toggle_state = false;
- 	radioAudioPlayer.pause();
-});
-
-			
 		} catch(e){
 		}
 	}
