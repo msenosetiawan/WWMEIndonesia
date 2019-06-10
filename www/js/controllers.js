@@ -44,6 +44,7 @@ angular.module("wwme_indonesia.controllers", [])
 	modal_language += "<ion-content class=\"padding\">";
 	modal_language += "<div class=\"list\">";
 	modal_language += "<ion-radio icon=\"icon ion-android-radio-button-on\" ng-model=\"language_option\" ng-value=\"'en-us'\" ng-click=\"tryChangeLanguage('en-us')\">English - US</ion-radio>";
+	modal_language += "<ion-radio icon=\"icon ion-android-radio-button-on\" ng-model=\"language_option\" ng-value=\"'id'\" ng-click=\"tryChangeLanguage('id')\">Indonesian</ion-radio>";
 	modal_language += "<button class=\"button button-full button-positive-900\" ng-click=\"closeLanguageDialog()\">{{ 'Close' | translate }}</button>";
 	modal_language += "</div>";
 	modal_language += "</ion-content>";
@@ -448,10 +449,10 @@ angular.module("wwme_indonesia.controllers", [])
 	popover_template += "	<ion-content>";
 	popover_template += "		<ion-list>";
 	popover_template += "			<a  class=\"item dark-ink\" ng-href=\"#/wwme_indonesia/about_us\" ng-click=\"popover.hide()\">";
-	popover_template += "			{{ 'Tentang Kami' | translate }}";
+	popover_template += "			{{ 'About Apps' | translate }}";
 	popover_template += "			</a>";
 	popover_template += "			<a  class=\"item dark-ink\" ng-click=\"showLanguageDialog()\" >";
-	popover_template += "			{{ 'Bahasa' | translate }}";
+	popover_template += "			{{ 'Language' | translate }}";
 	popover_template += "			</a>";
 	popover_template += "		</ion-list>";
 	popover_template += "	</ion-content>";
@@ -698,8 +699,8 @@ $ionicConfig.backButton.text("");
 	controller_by_user();
 })
 
-// TODO: jadwal_wemeCtrl --|-- 
-.controller("jadwal_wemeCtrl", function($ionicConfig,$scope,$rootScope,$state,$location,$ionicScrollDelegate,$ionicListDelegate,$http,$httpParamSerializer,$stateParams,$timeout,$interval,$ionicLoading,$ionicPopup,$ionicPopover,$ionicActionSheet,$ionicSlideBoxDelegate,$ionicHistory,ionicMaterialInk,ionicMaterialMotion,$window,$ionicModal,base64,md5,$document,$sce,$ionicGesture,$translate,tmhDynamicLocale){
+// TODO: languageCtrl --|-- 
+.controller("languageCtrl", function($ionicConfig,$scope,$rootScope,$state,$location,$ionicScrollDelegate,$ionicListDelegate,$http,$httpParamSerializer,$stateParams,$timeout,$interval,$ionicLoading,$ionicPopup,$ionicPopover,$ionicActionSheet,$ionicSlideBoxDelegate,$ionicHistory,ionicMaterialInk,ionicMaterialMotion,$window,$ionicModal,base64,md5,$document,$sce,$ionicGesture,$translate,tmhDynamicLocale){
 	
 	$rootScope.headerExists = true;
 	$rootScope.ionWidth = $document[0].body.querySelector(".view-container").offsetWidth || 412;
@@ -717,13 +718,13 @@ $ionicConfig.backButton.text("");
 			$scope.scrollTop();
 		});
 	};
-	// TODO: jadwal_wemeCtrl --|-- $scope.scrollTop
+	// TODO: languageCtrl --|-- $scope.scrollTop
 	$rootScope.scrollTop = function(){
 		$timeout(function(){
 			$ionicScrollDelegate.$getByHandle("top").scrollTop();
 		},100);
 	};
-	// TODO: jadwal_wemeCtrl --|-- $scope.toggleGroup
+	// TODO: languageCtrl --|-- $scope.toggleGroup
 	$scope.toggleGroup = function(group) {
 		if ($scope.isGroupShown(group)) {
 			$scope.shownGroup = null;
@@ -736,7 +737,7 @@ $ionicConfig.backButton.text("");
 		return $scope.shownGroup === group;
 	};
 	
-	// TODO: jadwal_wemeCtrl --|-- $scope.redirect
+	// TODO: languageCtrl --|-- $scope.redirect
 	// redirect
 	$scope.redirect = function($url){
 		$window.location.href = $url;
@@ -750,12 +751,81 @@ $ionicConfig.backButton.text("");
 	}, 300);
 	// code 
 
-	// TODO: jadwal_wemeCtrl --|-- controller_by_user
+	// TODO: languageCtrl --|-- controller_by_user
 	// controller by user 
 	function controller_by_user(){
 		try {
 			
 $ionicConfig.backButton.text("");			
+		} catch(e){
+		}
+	}
+	$scope.rating = {};
+	$scope.rating.max = 5;
+	
+	// animation ink (ionic-material)
+	ionicMaterialInk.displayEffect();
+	controller_by_user();
+})
+
+// TODO: pengurus_relasiCtrl --|-- 
+.controller("pengurus_relasiCtrl", function($ionicConfig,$scope,$rootScope,$state,$location,$ionicScrollDelegate,$ionicListDelegate,$http,$httpParamSerializer,$stateParams,$timeout,$interval,$ionicLoading,$ionicPopup,$ionicPopover,$ionicActionSheet,$ionicSlideBoxDelegate,$ionicHistory,ionicMaterialInk,ionicMaterialMotion,$window,$ionicModal,base64,md5,$document,$sce,$ionicGesture,$translate,tmhDynamicLocale){
+	
+	$rootScope.headerExists = true;
+	$rootScope.ionWidth = $document[0].body.querySelector(".view-container").offsetWidth || 412;
+	$rootScope.grid64 = parseInt($rootScope.ionWidth / 64) ;
+	$rootScope.grid80 = parseInt($rootScope.ionWidth / 80) ;
+	$rootScope.grid128 = parseInt($rootScope.ionWidth / 128) ;
+	$rootScope.grid256 = parseInt($rootScope.ionWidth / 256) ;
+	$rootScope.last_edit = "page" ;
+	$scope.$on("$ionicView.afterEnter", function (){
+		var page_id = $state.current.name ;
+		$rootScope.page_id = page_id.replace(".","-") ;
+	});
+	if($rootScope.headerShrink == true){
+		$scope.$on("$ionicView.enter", function(){
+			$scope.scrollTop();
+		});
+	};
+	// TODO: pengurus_relasiCtrl --|-- $scope.scrollTop
+	$rootScope.scrollTop = function(){
+		$timeout(function(){
+			$ionicScrollDelegate.$getByHandle("top").scrollTop();
+		},100);
+	};
+	// TODO: pengurus_relasiCtrl --|-- $scope.toggleGroup
+	$scope.toggleGroup = function(group) {
+		if ($scope.isGroupShown(group)) {
+			$scope.shownGroup = null;
+		} else {
+			$scope.shownGroup = group;
+		}
+	};
+	
+	$scope.isGroupShown = function(group) {
+		return $scope.shownGroup === group;
+	};
+	
+	// TODO: pengurus_relasiCtrl --|-- $scope.redirect
+	// redirect
+	$scope.redirect = function($url){
+		$window.location.href = $url;
+	};
+	
+	// Set Motion
+	$timeout(function(){
+		ionicMaterialMotion.slideUp({
+			selector: ".slide-up"
+		});
+	}, 300);
+	// code 
+
+	// TODO: pengurus_relasiCtrl --|-- controller_by_user
+	// controller by user 
+	function controller_by_user(){
+		try {
+			
+			
 		} catch(e){
 		}
 	}

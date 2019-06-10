@@ -20,6 +20,7 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 
 		$rootScope.hide_menu_home = false ;
 		$rootScope.hide_menu_tentang_kami = false ;
+		$rootScope.hide_menu_pengurus_relasi = false ;
 		$rootScope.hide_menu_rak_e_relasi = false ;
 		$rootScope.hide_menu_event_me = false ;
 
@@ -276,6 +277,7 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 
 	.state("wwme_indonesia.event_me", {
 		url: "/event_me",
+		cache:false,
 		views: {
 			"wwme_indonesia-side_menus" : {
 						templateUrl:"templates/wwme_indonesia-event_me.html",
@@ -287,12 +289,26 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 		}
 	})
 
-	.state("wwme_indonesia.jadwal_weme", {
-		url: "/jadwal_weme",
+	.state("wwme_indonesia.language", {
+		url: "/language",
 		views: {
 			"wwme_indonesia-side_menus" : {
-						templateUrl:"templates/wwme_indonesia-jadwal_weme.html",
-						controller: "jadwal_wemeCtrl"
+						templateUrl:"templates/wwme_indonesia-language.html",
+						controller: "languageCtrl"
+					},
+			"fabButtonUp" : {
+						template: '',
+					},
+		}
+	})
+
+	.state("wwme_indonesia.pengurus_relasi", {
+		url: "/pengurus_relasi",
+		cache:false,
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-pengurus_relasi.html",
+						controller: "pengurus_relasiCtrl"
 					},
 			"fabButtonUp" : {
 						template: '',
