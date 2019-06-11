@@ -1,0 +1,7 @@
+	<ion-view view-title=" {{ 'Language' | translate }}" hide-nav-bar="false" >
+		<!-- content -->
+		<ion-content delegate-handle="top" lazy-scroll  id="page-language" class="padding page-language">
+		<ion-list class="list" ><div class="item item-divider">{{ 'Select a language?' | translate }}</div><button class="button button-full" ng-click="tryChangeLanguage('en-us')" >English - US</button><button class="button button-full" ng-click="tryChangeLanguage('id')" >Indonesian</button></ion-list>
+		</ion-content>
+		<!-- ./content -->
+	</ion-view>
