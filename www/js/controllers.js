@@ -38,14 +38,14 @@ angular.module("wwme_indonesia.controllers", [])
 	// TODO: indexCtrl --|-- $rootScope.showLanguageDialog
 	var modal_language = "";
 	modal_language += "<ion-modal-view>";
-	modal_language += "<ion-header-bar class=\"bar bar-header bar-positive-900\">";
+	modal_language += "<ion-header-bar class=\"bar bar-header bar-dark\">";
 	modal_language += "<h1 class=\"title\">{{ 'Language' | translate }}</h1>";
 	modal_language += "</ion-header-bar>";
 	modal_language += "<ion-content class=\"padding\">";
 	modal_language += "<div class=\"list\">";
 	modal_language += "<ion-radio icon=\"icon ion-android-radio-button-on\" ng-model=\"language_option\" ng-value=\"'en-us'\" ng-click=\"tryChangeLanguage('en-us')\">English - US</ion-radio>";
 	modal_language += "<ion-radio icon=\"icon ion-android-radio-button-on\" ng-model=\"language_option\" ng-value=\"'id'\" ng-click=\"tryChangeLanguage('id')\">Indonesian</ion-radio>";
-	modal_language += "<button class=\"button button-full button-positive-900\" ng-click=\"closeLanguageDialog()\">{{ 'Close' | translate }}</button>";
+	modal_language += "<button class=\"button button-full button-dark\" ng-click=\"closeLanguageDialog()\">{{ 'Close' | translate }}</button>";
 	modal_language += "</div>";
 	modal_language += "</ion-content>";
 	modal_language += "</ion-modal-view>";
@@ -105,7 +105,7 @@ angular.module("wwme_indonesia.controllers", [])
 	// TODO: indexCtrl --|-- $rootScope.showFontSizeDialog
 	var modal_fontsize = "";
 	modal_fontsize += "<ion-modal-view>";
-	modal_fontsize += "<ion-header-bar class=\"bar bar-header bar-positive-900\">";
+	modal_fontsize += "<ion-header-bar class=\"bar bar-header bar-dark\">";
 	modal_fontsize += "<h1 class=\"title\">{{ 'Font Size' | translate }}</h1>";
 	modal_fontsize += "</ion-header-bar>";
 	modal_fontsize += "<ion-content class=\"padding\">";
@@ -113,7 +113,7 @@ angular.module("wwme_indonesia.controllers", [])
 	modal_fontsize += "<ion-radio icon=\"icon ion-android-radio-button-on\" ng-model=\"fontsize_option\" ng-value=\"'small'\" ng-click=\"tryChangeFontSize('small');\">{{ 'Small' | translate }}</ion-radio>";
 	modal_fontsize += "<ion-radio icon=\"icon ion-android-radio-button-on\" ng-model=\"fontsize_option\" ng-value=\"'normal'\" ng-click=\"tryChangeFontSize('normal');\">{{ 'Normal' | translate }}</ion-radio>";
 	modal_fontsize += "<ion-radio icon=\"icon ion-android-radio-button-on\" ng-model=\"fontsize_option\" ng-value=\"'large'\" ng-click=\"tryChangeFontSize('large');\">{{ 'Large' | translate }}</ion-radio>";
-	modal_fontsize += "<button class=\"button button-full button-positive-900\" ng-click=\"closeFontSizeDialog()\">{{ 'Close' | translate }}</button>";
+	modal_fontsize += "<button class=\"button button-full button-dark\" ng-click=\"closeFontSizeDialog()\">{{ 'Close' | translate }}</button>";
 	modal_fontsize += "</div>";
 	modal_fontsize += "</ion-content>";
 	modal_fontsize += "</ion-modal-view>";
@@ -165,7 +165,7 @@ angular.module("wwme_indonesia.controllers", [])
 	var modal_notification = "";
 	$rootScope.disable_notification_option = false;
 	modal_notification += "<ion-modal-view>";
-	modal_notification += "<ion-header-bar class=\"bar bar-header bar-positive-900\">";
+	modal_notification += "<ion-header-bar class=\"bar bar-header bar-dark\">";
 	modal_notification += "<h1 class=\"title\">{{ 'Notifications' | translate }}</h1>";
 	modal_notification += "</ion-header-bar>";
 	modal_notification += "<ion-content class=\"\">";
@@ -174,7 +174,7 @@ angular.module("wwme_indonesia.controllers", [])
 	modal_notification += "{{ 'Disable Alerts' | translate }}";
 	modal_notification += "</ion-toggle>";
 	modal_notification += "<div class=\"item\">";
-	modal_notification += "<button class=\"button button-full button-positive-900\" ng-click=\"closeNotificationDialog()\">{{ 'Close' | translate }}</button>";
+	modal_notification += "<button class=\"button button-full button-dark\" ng-click=\"closeNotificationDialog()\">{{ 'Close' | translate }}</button>";
 	modal_notification += "</div>";
 	modal_notification += "</div>";
 	modal_notification += "</ion-content>";

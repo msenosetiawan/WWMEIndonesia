@@ -38,13 +38,14 @@ angular.module("wwme_indonesia.controllers", [])
 	// TODO: indexCtrl --|-- $rootScope.showLanguageDialog
 	var modal_language = "";
 	modal_language += "<ion-modal-view>";
-	modal_language += "<ion-header-bar class=\"bar bar-header bar-positive-900\">";
+	modal_language += "<ion-header-bar class=\"bar bar-header bar-dark\">";
 	modal_language += "<h1 class=\"title\">{{ 'Language' | translate }}</h1>";
 	modal_language += "</ion-header-bar>";
 	modal_language += "<ion-content class=\"padding\">";
 	modal_language += "<div class=\"list\">";
 	modal_language += "<ion-radio icon=\"icon ion-android-radio-button-on\" ng-model=\"language_option\" ng-value=\"'en-us'\" ng-click=\"tryChangeLanguage('en-us')\">English - US</ion-radio>";
-	modal_language += "<button class=\"button button-full button-positive-900\" ng-click=\"closeLanguageDialog()\">{{ 'Close' | translate }}</button>";
+	modal_language += "<ion-radio icon=\"icon ion-android-radio-button-on\" ng-model=\"language_option\" ng-value=\"'id'\" ng-click=\"tryChangeLanguage('id')\">Indonesian</ion-radio>";
+	modal_language += "<button class=\"button button-full button-dark\" ng-click=\"closeLanguageDialog()\">{{ 'Close' | translate }}</button>";
 	modal_language += "</div>";
 	modal_language += "</ion-content>";
 	modal_language += "</ion-modal-view>";
@@ -104,7 +105,7 @@ angular.module("wwme_indonesia.controllers", [])
 	// TODO: indexCtrl --|-- $rootScope.showFontSizeDialog
 	var modal_fontsize = "";
 	modal_fontsize += "<ion-modal-view>";
-	modal_fontsize += "<ion-header-bar class=\"bar bar-header bar-positive-900\">";
+	modal_fontsize += "<ion-header-bar class=\"bar bar-header bar-dark\">";
 	modal_fontsize += "<h1 class=\"title\">{{ 'Font Size' | translate }}</h1>";
 	modal_fontsize += "</ion-header-bar>";
 	modal_fontsize += "<ion-content class=\"padding\">";
@@ -112,7 +113,7 @@ angular.module("wwme_indonesia.controllers", [])
 	modal_fontsize += "<ion-radio icon=\"icon ion-android-radio-button-on\" ng-model=\"fontsize_option\" ng-value=\"'small'\" ng-click=\"tryChangeFontSize('small');\">{{ 'Small' | translate }}</ion-radio>";
 	modal_fontsize += "<ion-radio icon=\"icon ion-android-radio-button-on\" ng-model=\"fontsize_option\" ng-value=\"'normal'\" ng-click=\"tryChangeFontSize('normal');\">{{ 'Normal' | translate }}</ion-radio>";
 	modal_fontsize += "<ion-radio icon=\"icon ion-android-radio-button-on\" ng-model=\"fontsize_option\" ng-value=\"'large'\" ng-click=\"tryChangeFontSize('large');\">{{ 'Large' | translate }}</ion-radio>";
-	modal_fontsize += "<button class=\"button button-full button-positive-900\" ng-click=\"closeFontSizeDialog()\">{{ 'Close' | translate }}</button>";
+	modal_fontsize += "<button class=\"button button-full button-dark\" ng-click=\"closeFontSizeDialog()\">{{ 'Close' | translate }}</button>";
 	modal_fontsize += "</div>";
 	modal_fontsize += "</ion-content>";
 	modal_fontsize += "</ion-modal-view>";
@@ -159,6 +160,96 @@ angular.module("wwme_indonesia.controllers", [])
 	$rootScope.tryChangeFontSize = function(val){
 		$rootScope.changeFontSize(val);
 	};
+	
+	// TODO: indexCtrl --|-- $rootScope.modal_notification
+	var modal_notification = "";
+	$rootScope.disable_notification_option = false;
+	modal_notification += "<ion-modal-view>";
+	modal_notification += "<ion-header-bar class=\"bar bar-header bar-dark\">";
+	modal_notification += "<h1 class=\"title\">{{ 'Notifications' | translate }}</h1>";
+	modal_notification += "</ion-header-bar>";
+	modal_notification += "<ion-content class=\"\">";
+	modal_notification += "<div class=\"list\">";
+	modal_notification += "<ion-toggle ng-model=\"disable_notification_option\"  ng-click=\"tryChangeNotification(disable_notification_option)\">";
+	modal_notification += "{{ 'Disable Alerts' | translate }}";
+	modal_notification += "</ion-toggle>";
+	modal_notification += "<div class=\"item\">";
+	modal_notification += "<button class=\"button button-full button-dark\" ng-click=\"closeNotificationDialog()\">{{ 'Close' | translate }}</button>";
+	modal_notification += "</div>";
+	modal_notification += "</div>";
+	modal_notification += "</ion-content>";
+	modal_notification += "</ion-modal-view>";
+	
+	$rootScope.notificationDialog = $ionicModal.fromTemplate(modal_notification,{
+		scope: $scope,
+		animation: "slide-in-up"
+	});
+	
+	$rootScope.showNotificationDialog = function(){
+		get_notification();
+		$rootScope.notificationDialog.show();
+	};
+	
+	$rootScope.closeNotificationDialog = function(){
+		$rootScope.notificationDialog.hide();
+		$rootScope.closeMenuPopover();
+	};
+	
+	var get_notification =  function(){
+		localforage.getItem("disable_notification_option", function(err, value){
+			var notification_value = false ;
+			if(value === null){
+				notification_value = false ;
+			}
+			if(value === true){
+				notification_value = true ;
+			}else{
+				notification_value = false ;
+			}
+			localforage.setItem("disable_notification_option",notification_value);
+			$rootScope.disable_notification_option = notification_value ;
+		}).then(function(value){
+			var notification_value = false ;
+			if(value === null){
+				notification_value = false ;
+			}
+			if(value === true){
+				notification_value = true ;
+			}else{
+				notification_value = false ;
+			}
+			localforage.setItem("disable_notification_option",notification_value);
+			$rootScope.disable_notification_option = notification_value ;
+		}).catch(function (err){
+			localforage.setItem("disable_notification_option",false);
+			$rootScope.disable_notification_option = false ;
+		})
+	
+	}
+	
+	get_notification();
+	
+	
+	$rootScope.tryChangeNotification = function(val){
+		$rootScope.changeNotification(val);
+	};
+	
+	
+	$rootScope.changeNotification = function(val){
+		$rootScope.disable_notification_option = val;
+		localforage.setItem("disable_notification_option",val);
+	};
+	
+	
+	$scope.$watch("disable_notification_option", function (newValue, oldValue, scope) {
+		if(window.plugins && window.plugins.OneSignal){
+			if(newValue == true){
+				window.plugins.OneSignal.setSubscription(false);
+			}else{
+				window.plugins.OneSignal.setSubscription(true);
+			}
+		}
+	});
 	
 	// TODO: indexCtrl --|-- $rootScope.clearCacheApp
 	$rootScope.clearCacheApp = function(){
@@ -358,10 +449,10 @@ angular.module("wwme_indonesia.controllers", [])
 	popover_template += "	<ion-content>";
 	popover_template += "		<ion-list>";
 	popover_template += "			<a  class=\"item dark-ink\" ng-href=\"#/wwme_indonesia/about_us\" ng-click=\"popover.hide()\">";
-	popover_template += "			{{ 'Tentang Kami' | translate }}";
+	popover_template += "			{{ 'About Apps' | translate }}";
 	popover_template += "			</a>";
 	popover_template += "			<a  class=\"item dark-ink\" ng-click=\"showLanguageDialog()\" >";
-	popover_template += "			{{ 'Bahasa' | translate }}";
+	popover_template += "			{{ 'Language' | translate }}";
 	popover_template += "			</a>";
 	popover_template += "		</ion-list>";
 	popover_template += "	</ion-content>";
@@ -608,8 +699,8 @@ $ionicConfig.backButton.text("");
 	controller_by_user();
 })
 
-// TODO: jadwal_wemeCtrl --|-- 
-.controller("jadwal_wemeCtrl", function($ionicConfig,$scope,$rootScope,$state,$location,$ionicScrollDelegate,$ionicListDelegate,$http,$httpParamSerializer,$stateParams,$timeout,$interval,$ionicLoading,$ionicPopup,$ionicPopover,$ionicActionSheet,$ionicSlideBoxDelegate,$ionicHistory,ionicMaterialInk,ionicMaterialMotion,$window,$ionicModal,base64,md5,$document,$sce,$ionicGesture,$translate,tmhDynamicLocale){
+// TODO: languageCtrl --|-- 
+.controller("languageCtrl", function($ionicConfig,$scope,$rootScope,$state,$location,$ionicScrollDelegate,$ionicListDelegate,$http,$httpParamSerializer,$stateParams,$timeout,$interval,$ionicLoading,$ionicPopup,$ionicPopover,$ionicActionSheet,$ionicSlideBoxDelegate,$ionicHistory,ionicMaterialInk,ionicMaterialMotion,$window,$ionicModal,base64,md5,$document,$sce,$ionicGesture,$translate,tmhDynamicLocale){
 	
 	$rootScope.headerExists = true;
 	$rootScope.ionWidth = $document[0].body.querySelector(".view-container").offsetWidth || 412;
@@ -627,13 +718,13 @@ $ionicConfig.backButton.text("");
 			$scope.scrollTop();
 		});
 	};
-	// TODO: jadwal_wemeCtrl --|-- $scope.scrollTop
+	// TODO: languageCtrl --|-- $scope.scrollTop
 	$rootScope.scrollTop = function(){
 		$timeout(function(){
 			$ionicScrollDelegate.$getByHandle("top").scrollTop();
 		},100);
 	};
-	// TODO: jadwal_wemeCtrl --|-- $scope.toggleGroup
+	// TODO: languageCtrl --|-- $scope.toggleGroup
 	$scope.toggleGroup = function(group) {
 		if ($scope.isGroupShown(group)) {
 			$scope.shownGroup = null;
@@ -646,7 +737,7 @@ $ionicConfig.backButton.text("");
 		return $scope.shownGroup === group;
 	};
 	
-	// TODO: jadwal_wemeCtrl --|-- $scope.redirect
+	// TODO: languageCtrl --|-- $scope.redirect
 	// redirect
 	$scope.redirect = function($url){
 		$window.location.href = $url;
@@ -660,7 +751,7 @@ $ionicConfig.backButton.text("");
 	}, 300);
 	// code 
 
-	// TODO: jadwal_wemeCtrl --|-- controller_by_user
+	// TODO: languageCtrl --|-- controller_by_user
 	// controller by user 
 	function controller_by_user(){
 		try {
@@ -677,8 +768,8 @@ $ionicConfig.backButton.text("");
 	controller_by_user();
 })
 
-// TODO: radioCtrl --|-- 
-.controller("radioCtrl", function($ionicConfig,$scope,$rootScope,$state,$location,$ionicScrollDelegate,$ionicListDelegate,$http,$httpParamSerializer,$stateParams,$timeout,$interval,$ionicLoading,$ionicPopup,$ionicPopover,$ionicActionSheet,$ionicSlideBoxDelegate,$ionicHistory,ionicMaterialInk,ionicMaterialMotion,$window,$ionicModal,base64,md5,$document,$sce,$ionicGesture,$translate,tmhDynamicLocale){
+// TODO: pengurus_relasiCtrl --|-- 
+.controller("pengurus_relasiCtrl", function($ionicConfig,$scope,$rootScope,$state,$location,$ionicScrollDelegate,$ionicListDelegate,$http,$httpParamSerializer,$stateParams,$timeout,$interval,$ionicLoading,$ionicPopup,$ionicPopover,$ionicActionSheet,$ionicSlideBoxDelegate,$ionicHistory,ionicMaterialInk,ionicMaterialMotion,$window,$ionicModal,base64,md5,$document,$sce,$ionicGesture,$translate,tmhDynamicLocale){
 	
 	$rootScope.headerExists = true;
 	$rootScope.ionWidth = $document[0].body.querySelector(".view-container").offsetWidth || 412;
@@ -686,7 +777,7 @@ $ionicConfig.backButton.text("");
 	$rootScope.grid80 = parseInt($rootScope.ionWidth / 80) ;
 	$rootScope.grid128 = parseInt($rootScope.ionWidth / 128) ;
 	$rootScope.grid256 = parseInt($rootScope.ionWidth / 256) ;
-	$rootScope.last_edit = "page_builder" ;
+	$rootScope.last_edit = "page" ;
 	$scope.$on("$ionicView.afterEnter", function (){
 		var page_id = $state.current.name ;
 		$rootScope.page_id = page_id.replace(".","-") ;
@@ -696,13 +787,13 @@ $ionicConfig.backButton.text("");
 			$scope.scrollTop();
 		});
 	};
-	// TODO: radioCtrl --|-- $scope.scrollTop
+	// TODO: pengurus_relasiCtrl --|-- $scope.scrollTop
 	$rootScope.scrollTop = function(){
 		$timeout(function(){
 			$ionicScrollDelegate.$getByHandle("top").scrollTop();
 		},100);
 	};
-	// TODO: radioCtrl --|-- $scope.toggleGroup
+	// TODO: pengurus_relasiCtrl --|-- $scope.toggleGroup
 	$scope.toggleGroup = function(group) {
 		if ($scope.isGroupShown(group)) {
 			$scope.shownGroup = null;
@@ -715,7 +806,7 @@ $ionicConfig.backButton.text("");
 		return $scope.shownGroup === group;
 	};
 	
-	// TODO: radioCtrl --|-- $scope.redirect
+	// TODO: pengurus_relasiCtrl --|-- $scope.redirect
 	// redirect
 	$scope.redirect = function($url){
 		$window.location.href = $url;
@@ -729,76 +820,11 @@ $ionicConfig.backButton.text("");
 	}, 300);
 	// code 
 
-	// TODO: radioCtrl --|-- controller_by_user
+	// TODO: pengurus_relasiCtrl --|-- controller_by_user
 	// controller by user 
 	function controller_by_user(){
 		try {
 			
-
-        
-// TODO: radio https://idhq.radiorodja.com/;stream.mp3?_=3
-
-$rootScope.radioRadioURL = "https://idhq.radiorodja.com/;stream.mp3?_=3";
-$rootScope.radio_toggle_state = false;
-
-if (radioAudioPlayer == null) {
-	var radioAudioPlayer = $document[0].createElement("audio");
-	radioAudioPlayer.src = $sce.trustAsResourceUrl($rootScope.radioRadioURL);
-	try {
-		radioAudioPlayer.play();
-		$rootScope.radio_toggle_state = true;
-	} catch (e) {
-		$rootScope.radio_toggle_state = false;
-        //console.log(e);
-	}
-}
-
-$rootScope.radioTogglePlay = function() {
-	if ($rootScope.radio_toggle_state == false) {
-		try {
-			radioAudioPlayer.play();
-			$rootScope.radio_toggle_state = true;
-		} catch (e) {
-			$rootScope.radio_toggle_state = false;
-            //console.log(e);
-		}
-	} else {
-		$rootScope.radio_toggle_state = false;
-		radioAudioPlayer.pause();
-	}
-}
-
-
-$interval(function() {
-	$rootScope.state = radioAudioPlayer.readyState;
-    $rootScope.stateText = "";
-	switch($rootScope.state){
-	   case 0:
-            $rootScope.stateText = "no information";
-            break;
-	   case 1:
-            $rootScope.stateText = "initialized";
-            break;
-	   case 2:
-            $rootScope.stateText = "available";
-            break;
-	   case 3:
-            $rootScope.stateText = "playback position";
-            break;
-	   case 4:
-            $rootScope.stateText = "can be played";
-            break;
-	}
- 
-    
-}, 500);
-
-
-$scope.$on("$ionicView.beforeLeave", function (){
-    $rootScope.radio_toggle_state = false;
- 	radioAudioPlayer.pause();
-});
-
 			
 		} catch(e){
 		}

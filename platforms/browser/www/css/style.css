@@ -240,23 +240,14 @@ ul.rating li i{color:#FFCC00}
 
 /** option page **/
 #page-about_us{background: url("../data/images/background/bg8.jpg") no-repeat left top fixed;background-size: cover;width:100%;height:100%;background-repeat:no-repeat;}
-#page-radio{background: url("../data/images/background/bg1.jpg") no-repeat left top fixed;background-size: cover;width:100%;height:100%;background-repeat:no-repeat;}
 /** page about_us **/
 .about_us-box{background-color: rgba(255, 255, 255, 0.5);}.about_us-box .item{border-color: rgba(255, 255, 255, 0.5);border-left:0;border-right:0;}
 /** page dashboard **/
 
-/** page radio **/
+/** page event_me **/
 
-.audioplayer-box{min-height: 100%;height: auto; overflow: hidden;position: relative;}
-.audioplayer-card{padding:20px;margin:20px;background-color: #000; opacity:0.9; }
-.audioplayer-card .radio-button{padding:20px;}
-.audioplayer-title{text-align:center;}
-.audioplayer-title h3,.audioplayer-title p{color:#fff;}
-.audioplayer-button{padding-top: 2px; font-size:42px !important; text-shadow: 0 0 1px #000;color: #ffffff !important;box-shadow: unset !important;} 
-.audioplayer-spinner svg {width:128px;height:128px;stroke:#0f0;fill:#fff;}
-.audioplayer-spinner i{color:#0df;font-size:128px;opacity: 0.9;}   
-.audioplayer-logo {height: 130px;width: 100%;display: block;margin-top:12px;margin-bottom:12px;}     
-    
+/** page pengurus_relasi **/
+
 /** page tentang_kami **/
 
 /** custom css **/

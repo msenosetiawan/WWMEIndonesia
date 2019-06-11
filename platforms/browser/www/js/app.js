@@ -20,6 +20,7 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 
 		$rootScope.hide_menu_home = false ;
 		$rootScope.hide_menu_tentang_kami = false ;
+		$rootScope.hide_menu_pengurus_relasi = false ;
 		$rootScope.hide_menu_rak_e_relasi = false ;
 		$rootScope.hide_menu_event_me = false ;
 
@@ -60,6 +61,22 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 					}
 				}
 			}, 5000);
+
+			//required: cordova plugin add onesignal-cordova-plugin --save
+			if(window.plugins && window.plugins.OneSignal){
+				window.plugins.OneSignal.enableNotificationsWhenActive(true);
+				var notificationOpenedCallback = function(jsonData){
+					try {
+						$timeout(function(){
+							$window.location = "#/wwme_indonesia/" + jsonData.notification.payload.additionalData.page ;
+						},200);
+					} catch(e){
+						console.log("onesignal:" + e);
+					}
+				}
+				window.plugins.OneSignal.startInit("b2b8ca5f-f377-4aee-a843-8260526bfe88").handleNotificationOpened(notificationOpenedCallback).endInit();
+			}
+
 
 		});
 		$ionicPlatform.registerBackButtonAction(function (e){
@@ -260,6 +277,7 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 
 	.state("wwme_indonesia.event_me", {
 		url: "/event_me",
+		cache:false,
 		views: {
 			"wwme_indonesia-side_menus" : {
 						templateUrl:"templates/wwme_indonesia-event_me.html",
@@ -271,12 +289,12 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 		}
 	})
 
-	.state("wwme_indonesia.jadwal_weme", {
-		url: "/jadwal_weme",
+	.state("wwme_indonesia.language", {
+		url: "/language",
 		views: {
 			"wwme_indonesia-side_menus" : {
-						templateUrl:"templates/wwme_indonesia-jadwal_weme.html",
-						controller: "jadwal_wemeCtrl"
+						templateUrl:"templates/wwme_indonesia-language.html",
+						controller: "languageCtrl"
 					},
 			"fabButtonUp" : {
 						template: '',
@@ -284,12 +302,13 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 		}
 	})
 
-	.state("wwme_indonesia.radio", {
-		url: "/radio",
+	.state("wwme_indonesia.pengurus_relasi", {
+		url: "/pengurus_relasi",
+		cache:false,
 		views: {
 			"wwme_indonesia-side_menus" : {
-						templateUrl:"templates/wwme_indonesia-radio.html",
-						controller: "radioCtrl"
+						templateUrl:"templates/wwme_indonesia-pengurus_relasi.html",
+						controller: "pengurus_relasiCtrl"
 					},
 			"fabButtonUp" : {
 						template: '',
