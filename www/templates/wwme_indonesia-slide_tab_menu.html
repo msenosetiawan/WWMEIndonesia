@@ -1,0 +1,75 @@
+	<ion-view view-title=" Menu" hide-nav-bar="false" >
+		<!-- content -->
+		<ion-content delegate-handle="top" lazy-scroll  id="page-slide_tab_menu" class=" page-slide_tab_menu">
+		
+	<div style="width: 100%;height:100%;">
+		<ion-slide-box class="ion-slide-tabs" slide-tabs-scrollable="false" show-pager="false" ion-slide-tabs>
+			<ion-slide ion-slide-tab-label="Utama" >
+					<ion-content scroll="false" class="slidingTabContent">
+						<div class="list">
+							<a class="item item-icon-left" ng-href="#/wwme_indonesia/dashboard" >
+								<i class="icon ion-android-home" ></i>
+								<h2>{{ "Beranda" | translate }}</h2>
+								<span class="item-note pull-left"></span>
+							</a>
+							<a class="item item-icon-left" ng-href="#/wwme_indonesia/categories" >
+								<i class="icon ion-social-buffer" ></i>
+								<h2>{{ "Kategori" | translate }}</h2>
+								<span class="item-note pull-left">List of categories</span>
+							</a>
+							<a class="item item-icon-left" ng-href="#/wwme_indonesia/posts/-1" >
+								<i class="icon ion-clipboard" ></i>
+								<h2>{{ "Berita" | translate }}</h2>
+								<span class="item-note pull-left"></span>
+							</a>
+							<a class="item item-icon-left" ng-href="#/wwme_indonesia/event_me" >
+								<i class="icon ion-android-calendar" ></i>
+								<h2>{{ "Events" | translate }}</h2>
+								<span class="item-note pull-left"></span>
+							</a>
+							<a class="item item-icon-left" ng-href="#/wwme_indonesia/post_bookmark" >
+								<i class="icon ion-android-favorite" ></i>
+								<h2>{{ "Bookmarks" | translate }}</h2>
+								<span class="item-note pull-left">Bookmarks</span>
+							</a>
+						</div>
+					</ion-content>
+			</ion-slide>
+			<ion-slide ion-slide-tab-label="Majalah Relasi" >
+					<ion-content scroll="false" class="slidingTabContent">
+						<div class="list">
+							<a class="item item-icon-left" ng-href="#/wwme_indonesia/e_relasi" >
+								<i class="icon ion-ios-book-outline" ></i>
+								<h2>{{ "e-Relasi" | translate }}</h2>
+								<span class="item-note pull-left"></span>
+							</a>
+							<a class="item item-icon-left" ng-href="#/wwme_indonesia/pengurus_relasi" >
+								<i class="icon ion-ios-people-outline" ></i>
+								<h2>{{ "Staff Relasi" | translate }}</h2>
+								<span class="item-note pull-left"></span>
+							</a>
+							<a class="item item-icon-left" ng-href="#/wwme_indonesia/download_pdf" >
+								<i class="icon ion-android-download" ></i>
+								<h2>{{ "Download PDF" | translate }}</h2>
+								<span class="item-note pull-left"></span>
+							</a>
+						</div>
+					</ion-content>
+			</ion-slide>
+			<ion-slide ion-slide-tab-label="Bantuan" >
+					<ion-content scroll="false" class="slidingTabContent">
+						<div class="list">
+							<a class="item item-icon-left" ng-href="#/wwme_indonesia/about_us" >
+								<i class="icon ion-help-buoy" ></i>
+								<h2>{{ "Tentang Kami" | translate }}</h2>
+								<span class="item-note pull-left"></span>
+							</a>
+						</div>
+					</ion-content>
+			</ion-slide>
+		</ion-slide-box>
+	</div>
+
+		</ion-content>
+		<!-- ./content -->
+	</ion-view>

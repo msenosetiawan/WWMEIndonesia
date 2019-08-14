@@ -1,6 +1,21 @@
 angular.module("wwme_indonesia.services", [])
 // TODO: --|---- directive
 	
+// TODO: --|-------- sound-touch
+.directive("soundTouch", function(){
+	/** required: cordova-plugin-velda-devicefeedback **/
+	return {
+			controller: function($scope, $element, $attrs){
+			$element.bind("touchend", onTouchEnd);
+			function onTouchEnd(event)
+			{
+				if (window.plugins && window.plugins.deviceFeedback){
+					window.plugins.deviceFeedback.acoustic();
+				}
+			};
+		}
+	};
+})
 	
 // TODO: --|-------- zoomTap
 .directive("zoomTap", function($compile, $ionicGesture) {

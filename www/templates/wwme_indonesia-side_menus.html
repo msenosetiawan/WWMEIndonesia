@@ -17,22 +17,43 @@
 			<img ng-src="{{ appLogo | trustUrl }}" class="avatar motion spin fade" />
 			<div class="menu-bottom"><span ng-bind-html="appName | strHTML"></span><br/></div>
 		</ion-header-bar>
-		<ion-content class="has-expanded-header stable-bg calm">
+		<ion-content class="has-expanded-header light-bg positive-900">
 			<ion-list class="list" >
-				<ion-item ng-hide="hide_menu_home"  class="menu-home item-sidebar item item-icon-left text-left dark-ink" nav-clear="" menu-close=""  ui-sref="wwme_indonesia.dashboard" >
-					<i class="icon ion-android-home"></i> {{ "Home" | translate }}
+				<ion-item ng-hide="hide_menu_dashboard" class="item item-divider text-left" >
+					 {{ "Utama" | translate }}
 				</ion-item>
-				<ion-item ng-hide="hide_menu_tentang_kami"  class="menu-tentang_kami item-sidebar item item-icon-left text-left dark-ink" nav-clear="" menu-close="" ui-sref="wwme_indonesia.tentang_kami">
-					<i class="icon ion-ios-people"></i> {{ "About WWME" | translate }}
+				<ion-item ng-hide="hide_menu_beranda"  sound-touch="true"  class="menu-beranda item-sidebar item item-icon-left text-left dark-ink" nav-clear="" menu-close=""  ui-sref="wwme_indonesia.dashboard" >
+					<i class="icon ion-android-home"></i> {{ "Beranda" | translate }}
 				</ion-item>
-				<ion-item ng-hide="hide_menu_pengurus_relasi"  class="menu-pengurus_relasi item-sidebar item item-icon-left text-left dark-ink" nav-clear="" menu-close="" ui-sref="wwme_indonesia.pengurus_relasi">
-					<i class="icon ion-android-contact"></i> {{ "Staff Relasi" | translate }}
+				<ion-item ng-hide="hide_menu_categories"  sound-touch="true"  class="menu-categories item-sidebar item item-icon-left text-left dark-ink" nav-clear="" menu-close="" ui-sref="wwme_indonesia.categories">
+					<i class="icon ion-social-buffer"></i> {{ "Kategori" | translate }}
 				</ion-item>
-				<ion-item ng-hide="hide_menu_rak_e_relasi"  class="menu-rak_e_relasi item-sidebar item item-icon-left text-left dark-ink" nav-clear="" menu-close="" ng-click="openWebView('http://pubhtml5.com/bookcase/fous')">
-					<i class="icon ion-ios-bookmarks"></i> {{ "e-Relasi" | translate }}
+				<ion-item ng-hide="hide_menu_posts"  sound-touch="true"  class="menu-posts item-sidebar item item-icon-left text-left dark-ink" nav-clear="" menu-close="" ui-sref="wwme_indonesia.posts({categories:'-1'})">
+					<i class="icon ion-clipboard"></i> {{ "Berita" | translate }}
 				</ion-item>
-				<ion-item ng-hide="hide_menu_event_me"  class="menu-event_me item-sidebar item item-icon-left text-left dark-ink" nav-clear="" menu-close="" ui-sref="wwme_indonesia.event_me">
+				<ion-item ng-hide="hide_menu_event_me"  sound-touch="true"  class="menu-event_me item-sidebar item item-icon-left text-left dark-ink" nav-clear="" menu-close="" ui-sref="wwme_indonesia.event_me">
 					<i class="icon ion-android-calendar"></i> {{ "Events" | translate }}
+				</ion-item>
+				<ion-item ng-hide="hide_menu_post_bookmark"  sound-touch="true"  class="menu-post_bookmark item-sidebar item item-icon-left text-left dark-ink" nav-clear="" menu-close="" ui-sref="wwme_indonesia.post_bookmark">
+					<i class="icon ion-android-favorite"></i> {{ "Bookmarks" | translate }}
+				</ion-item>
+				<ion-item ng-hide="hide_menu_majalah_relasi" class="item item-divider text-left" >
+					 {{ "Majalah Relasi" | translate }}
+				</ion-item>
+				<ion-item ng-hide="hide_menu_e_relasi"  sound-touch="true"  class="menu-e_relasi item-sidebar item item-icon-left text-left dark-ink" nav-clear="" menu-close="" ui-sref="wwme_indonesia.e_relasi">
+					<i class="icon ion-ios-book-outline"></i> {{ "e-Relasi" | translate }}
+				</ion-item>
+				<ion-item ng-hide="hide_menu_pengurus_relasi"  sound-touch="true"  class="menu-pengurus_relasi item-sidebar item item-icon-left text-left dark-ink" nav-clear="" menu-close="" ui-sref="wwme_indonesia.pengurus_relasi">
+					<i class="icon ion-ios-people-outline"></i> {{ "Staff Relasi" | translate }}
+				</ion-item>
+				<ion-item ng-hide="hide_menu_download_pdf"  sound-touch="true"  class="menu-download_pdf item-sidebar item item-icon-left text-left dark-ink" nav-clear="" menu-close="" ui-sref="wwme_indonesia.download_pdf">
+					<i class="icon ion-android-download"></i> {{ "Download PDF" | translate }}
+				</ion-item>
+				<ion-item ng-hide="hide_menu_help" class="item item-divider text-left" >
+					 {{ "Bantuan" | translate }}
+				</ion-item>
+				<ion-item ng-hide="hide_menu_about_us"  sound-touch="true"  class="menu-about_us item-sidebar item item-icon-left text-left dark-ink" nav-clear="" menu-close="" ui-sref="wwme_indonesia.about_us">
+					<i class="icon ion-help-buoy"></i> {{ "Tentang Kami" | translate }}
 				</ion-item>
 			</ion-list>
 		</ion-content>

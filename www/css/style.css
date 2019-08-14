@@ -235,19 +235,44 @@ ul.rating li i{color:#FFCC00}
 /** header **/
 
 /** menu **/
-.menu .bar.bar-header.expanded{background-image: url("../data/images/header/header2.jpg");background-size: 120%;background-position:0%;transition: all .5s ease-in-out;}
+.menu .bar.bar-header.expanded{background-image: url("../data/images/background/bg5.jpg");background-size: 120%;background-position:0%;transition: all .5s ease-in-out;}
 .menu .bar.bar-header.expanded img{margin:auto;left:16px;right:16px;}
 
 /** option page **/
-#page-about_us{background: url("../data/images/background/bg8.jpg") no-repeat left top fixed;background-size: cover;width:100%;height:100%;background-repeat:no-repeat;}
+#page-about_us{background: url("../data/images/background/bg5.jpg") no-repeat left top fixed;background-size: cover;width:100%;height:100%;background-repeat:no-repeat;}
+#page-categories{background: url("../data/images/background/bg7.jpg") no-repeat left top fixed;background-size: cover;width:100%;height:100%;background-repeat:no-repeat;}
+#page-dashboard{background: url("../data/images/background/bg7.jpg") no-repeat left top fixed;background-size: cover;width:100%;height:100%;background-repeat:no-repeat;}
+#page-faqs{background: url("../data/images/background/bg7.jpg") no-repeat left top fixed;background-size: cover;width:100%;height:100%;background-repeat:no-repeat;}
+#page-post_bookmark{background: url("../data/images/background/transparent.png") no-repeat left top fixed;background-size: cover;width:100%;height:100%;background-repeat:no-repeat;}
+#page-posts{background: url("../data/images/background/bg7.jpg") no-repeat left top fixed;background-size: cover;width:100%;height:100%;background-repeat:no-repeat;}
+#page-tag{background: url("../data/images/background/bg3.jpg") no-repeat left top fixed;background-size: cover;width:100%;height:100%;background-repeat:no-repeat;}
+#page-tag_singles{background: url("../data/images/background/bg3.jpg") no-repeat left top fixed;background-size: cover;width:100%;height:100%;background-repeat:no-repeat;}
+#page-users{background: url("../data/images/background/bg7.jpg") no-repeat left top fixed;background-size: cover;width:100%;height:100%;background-repeat:no-repeat;}
 /** page about_us **/
-.about_us-box{background-color: rgba(255, 255, 255, 0.5);}.about_us-box .item{border-color: rgba(255, 255, 255, 0.5);border-left:0;border-right:0;}
+.about-us-box{background-color: rgba(255, 255, 255, 0.5);}
+.about-us-box .item{border-color: rgba(255, 255, 255, 0.5);border-left:0;border-right:0;}
 /** page dashboard **/
+
+/** page download_pdf **/
 
 /** page event_me **/
 
+/** page faqs **/
+
+/** page form_data_wwme_indonesia **/
+#form_data_wwme_indonesia .list .item {border: 0;}
+
 /** page pengurus_relasi **/
 
+/** page post_bookmark **/
+.post_bookmark{margin-top: 50%;}
+.post_bookmark .icon:before{font-size:72px;font-weight: 600;}
+
+/** page slide_tab_menu **/
+
+/** page tag_bookmark **/
+.tag_bookmark{margin-top: 50%;}
+.tag_bookmark .icon:before{font-size:72px;font-weight: 600;}
 /** page tentang_kami **/
 
 /** custom css **/

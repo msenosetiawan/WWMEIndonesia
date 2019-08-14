@@ -18,11 +18,18 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 		});
 
 
-		$rootScope.hide_menu_home = false ;
-		$rootScope.hide_menu_tentang_kami = false ;
-		$rootScope.hide_menu_pengurus_relasi = false ;
-		$rootScope.hide_menu_rak_e_relasi = false ;
+		$rootScope.hide_menu_dashboard = false ;
+		$rootScope.hide_menu_beranda = false ;
+		$rootScope.hide_menu_categories = false ;
+		$rootScope.hide_menu_posts = false ;
 		$rootScope.hide_menu_event_me = false ;
+		$rootScope.hide_menu_post_bookmark = false ;
+		$rootScope.hide_menu_majalah_relasi = false ;
+		$rootScope.hide_menu_e_relasi = false ;
+		$rootScope.hide_menu_pengurus_relasi = false ;
+		$rootScope.hide_menu_download_pdf = false ;
+		$rootScope.hide_menu_help = false ;
+		$rootScope.hide_menu_about_us = false ;
 
 
 		$ionicPlatform.ready(function() {
@@ -213,7 +220,7 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 
 
 .config(["$translateProvider", function ($translateProvider){
-	$translateProvider.preferredLanguage("en-us");
+	$translateProvider.preferredLanguage("id");
 	$translateProvider.useStaticFilesLoader({
 		prefix: "translations/",
 		suffix: ".json"
@@ -224,7 +231,7 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 
 .config(function(tmhDynamicLocaleProvider){
 	tmhDynamicLocaleProvider.localeLocationPattern("lib/ionic/js/i18n/angular-locale_{{locale}}.js");
-	tmhDynamicLocaleProvider.defaultLocale("en-us");
+	tmhDynamicLocaleProvider.defaultLocale("id");
 })
 
 
@@ -261,13 +268,79 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 		}
 	})
 
+	.state("wwme_indonesia.bookmarks", {
+		url: "/bookmarks",
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-bookmarks.html",
+						controller: "bookmarksCtrl"
+					},
+			"fabButtonUp" : {
+						template: '',
+					},
+		}
+	})
+
+	.state("wwme_indonesia.categories", {
+		url: "/categories",
+		cache:true,
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-categories.html",
+						controller: "categoriesCtrl"
+					},
+			"fabButtonUp" : {
+						template: '',
+					},
+		}
+	})
+
 	.state("wwme_indonesia.dashboard", {
 		url: "/dashboard",
-		cache:false,
 		views: {
 			"wwme_indonesia-side_menus" : {
 						templateUrl:"templates/wwme_indonesia-dashboard.html",
 						controller: "dashboardCtrl"
+					},
+			"fabButtonUp" : {
+						template: '',
+					},
+		}
+	})
+
+	.state("wwme_indonesia.download_pdf", {
+		url: "/download_pdf",
+		cache:false,
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-download_pdf.html",
+						controller: "download_pdfCtrl"
+					},
+			"fabButtonUp" : {
+						template: '',
+					},
+		}
+	})
+
+	.state("wwme_indonesia.e_relasi", {
+		url: "/e_relasi",
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-e_relasi.html",
+						controller: "e_relasiCtrl"
+					},
+			"fabButtonUp" : {
+						template: '',
+					},
+		}
+	})
+
+	.state("wwme_indonesia.erelasi", {
+		url: "/erelasi",
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-erelasi.html",
+						controller: "erelasiCtrl"
 					},
 			"fabButtonUp" : {
 						template: '',
@@ -282,6 +355,32 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 			"wwme_indonesia-side_menus" : {
 						templateUrl:"templates/wwme_indonesia-event_me.html",
 						controller: "event_meCtrl"
+					},
+			"fabButtonUp" : {
+						template: '',
+					},
+		}
+	})
+
+	.state("wwme_indonesia.faqs", {
+		url: "/faqs",
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-faqs.html",
+						controller: "faqsCtrl"
+					},
+			"fabButtonUp" : {
+						template: '',
+					},
+		}
+	})
+
+	.state("wwme_indonesia.form_data_wwme_indonesia", {
+		url: "/form_data_wwme_indonesia",
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-form_data_wwme_indonesia.html",
+						controller: "form_data_wwme_indonesiaCtrl"
 					},
 			"fabButtonUp" : {
 						template: '',
@@ -316,6 +415,135 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 		}
 	})
 
+	.state("wwme_indonesia.post_bookmark", {
+		url: "/post_bookmark",
+		cache:false,
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-post_bookmark.html",
+						controller: "post_bookmarkCtrl"
+					},
+			"fabButtonUp" : {
+						template: '',
+					},
+		}
+	})
+
+	.state("wwme_indonesia.post_singles", {
+		url: "/post_singles/:id",
+		cache:true,
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-post_singles.html",
+						controller: "post_singlesCtrl"
+					},
+			"fabButtonUp" : {
+						template: '<button id="fab-up-button" ng-click="scrollTop()" class="button button-fab button-fab-bottom-right button-energized-900 spin"><i class="icon ion-arrow-up-a"></i></button>',
+						controller: function ($timeout) {
+							$timeout(function () {
+								document.getElementById("fab-up-button").classList.toggle("on");
+							}, 900);
+						}
+					},
+		}
+	})
+
+	.state("wwme_indonesia.posts", {
+		url: "/posts/:categories",
+		cache:true,
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-posts.html",
+						controller: "postsCtrl"
+					},
+			"fabButtonUp" : {
+						template: '<button id="fab-up-button" ng-click="scrollTop()" class="button button-fab button-fab-bottom-right button-energized-900 spin"><i class="icon ion-arrow-up-a"></i></button>',
+						controller: function ($timeout) {
+							$timeout(function () {
+								document.getElementById("fab-up-button").classList.toggle("on");
+							}, 900);
+						}
+					},
+		}
+	})
+
+	.state("wwme_indonesia.radio", {
+		url: "/radio",
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-radio.html",
+						controller: "radioCtrl"
+					},
+			"fabButtonUp" : {
+						template: '',
+					},
+		}
+	})
+
+	.state("wwme_indonesia.slide_tab_menu", {
+		url: "/slide_tab_menu",
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-slide_tab_menu.html",
+						controller: "slide_tab_menuCtrl"
+					},
+			"fabButtonUp" : {
+						template: '',
+					},
+		}
+	})
+
+	.state("wwme_indonesia.tag", {
+		url: "/tag",
+		cache:false,
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-tag.html",
+						controller: "tagCtrl"
+					},
+			"fabButtonUp" : {
+						template: '<button id="fab-up-button" ng-click="scrollTop()" class="button button-fab button-fab-bottom-right button-energized-900 spin"><i class="icon ion-arrow-up-a"></i></button>',
+						controller: function ($timeout) {
+							$timeout(function () {
+								document.getElementById("fab-up-button").classList.toggle("on");
+							}, 900);
+						}
+					},
+		}
+	})
+
+	.state("wwme_indonesia.tag_bookmark", {
+		url: "/tag_bookmark",
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-tag_bookmark.html",
+						controller: "tag_bookmarkCtrl"
+					},
+			"fabButtonUp" : {
+						template: '',
+					},
+		}
+	})
+
+	.state("wwme_indonesia.tag_singles", {
+		url: "/tag_singles/:id",
+		cache:false,
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-tag_singles.html",
+						controller: "tag_singlesCtrl"
+					},
+			"fabButtonUp" : {
+						template: '<button id="fab-up-button" ng-click="scrollTop()" class="button button-fab button-fab-bottom-right button-energized-900 spin"><i class="icon ion-arrow-up-a"></i></button>',
+						controller: function ($timeout) {
+							$timeout(function () {
+								document.getElementById("fab-up-button").classList.toggle("on");
+							}, 900);
+						}
+					},
+		}
+	})
+
 	.state("wwme_indonesia.tentang_kami", {
 		url: "/tentang_kami",
 		cache:false,
@@ -323,6 +551,20 @@ angular.module("wwme_indonesia", ["ngCordova","ionic","ionMdInput","ionic-materi
 			"wwme_indonesia-side_menus" : {
 						templateUrl:"templates/wwme_indonesia-tentang_kami.html",
 						controller: "tentang_kamiCtrl"
+					},
+			"fabButtonUp" : {
+						template: '',
+					},
+		}
+	})
+
+	.state("wwme_indonesia.users", {
+		url: "/users",
+		cache:false,
+		views: {
+			"wwme_indonesia-side_menus" : {
+						templateUrl:"templates/wwme_indonesia-users.html",
+						controller: "usersCtrl"
 					},
 			"fabButtonUp" : {
 						template: '',
