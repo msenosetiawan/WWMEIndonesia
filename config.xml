@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ayomulaionline.wwmeindonesia" version="1.0.190818" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ayomulaionline.wwmeindonesia" version="2.0.190818" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
 	<name>WWME Indonesia</name>
-	<description>Application for WWME Indonesia</description>
-	<author email="halo@wwmeindonesia.org" href="https://wwmeindonesia.org">WWME Indonesia Team</author>
-	<content src="https://wwmeindonesia.org" />
+	<description>Aplikasi Resmi Komunitas Worldwide Marriage Encounter Indonesia</description>
+	<author email="halo@ayomulai.online" href="https://ayomulai.online">Michael Seno Setiawan</author>
+	<content src="https://wwwmeindonesia.org" />
 	<!-- Network Request Whitelist -->
 	<access origin="*" />
 	<platform name="android">
@@ -65,7 +65,7 @@
 	<preference name="SplashScreenDelay" value="5000"/>
 	<preference name="FadeSplashScreenDuration" value="0"/>
 	<preference name="android-minSdkVersion" value="19"/>
-	<preference name="android-targetSdkVersion" value="28"/>	
+	<preference name="android-targetSdkVersion" value="28"/>
 	<preference name="BackupWebStorage" value="none"/>
 	<preference name="SplashScreen" value="screen"/>
 	<preference name="StatusBarOverlaysWebView" value="false" />
@@ -91,8 +91,6 @@
 	<plugin name="ionic-plugin-keyboard" />
 	<!-- ./default -->
 	<plugin name="cordova-plugin-dialogs" />
-	<plugin name="cordova-plugin-x-socialsharing" />
-	<plugin name="cordova-disable-http-cache" />
 	<plugin name="cordova-plugin-inappbrowser" />
 	<plugin name="cordova-plugin-network-information" />
 	<plugin name="onesignal-cordova-plugin" />

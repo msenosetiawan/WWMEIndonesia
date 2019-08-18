@@ -2,14 +2,14 @@
         {
           "name": "WWME Indonesia Lite",
           "short_name": "WWME Indonesia",
-          "start_url": "https://wwmeindonesia.org",
+          "start_url": "https://wwwmeindonesia.org",
           "display": "standalone",
           "icons":[{"src": "data/images/header/logo.png"}],
           "prefer_related_applications": true,
           "related_applications": [
             {
               "platform": "play",
-              "id": "com.imabuilder.wwmeindonesia.wwmeindonesia"
+              "id": "com.imabuilder.ayomulaionline.wwmeindonesia"
             }
           ],
          "background_color": "#ffffff",
