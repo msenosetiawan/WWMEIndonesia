@@ -2,9 +2,9 @@
         {
           "name": "WWME Indonesia Lite",
           "short_name": "WWME Indonesia",
-          "start_url": "index.html",
+          "start_url": "https://wwmeindonesia.org",
           "display": "standalone",
-          "icons":[{"src": "data/images/images/logo.png"}],
+          "icons":[{"src": "data/images/header/logo.png"}],
           "prefer_related_applications": true,
           "related_applications": [
             {
