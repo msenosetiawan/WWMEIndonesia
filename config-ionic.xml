@@ -3,7 +3,7 @@
 	<name>WWME Indonesia</name>
 	<description>Aplikasi Resmi Komunitas Worldwide Marriage Encounter Indonesia</description>
 	<author email="halo@ayomulai.online" href="https://ayomulai.online">Michael Seno Setiawan</author>
-	<content src="https://wwwmeindonesia.org" />
+	<content src="index.html" />
 	<!-- Network Request Whitelist -->
 	<access origin="*" />
 	<platform name="android">
@@ -90,6 +90,7 @@
 	<plugin name="ionic-plugin-keyboard" />
 	<!-- ./default -->
 	<plugin name="cordova-plugin-dialogs" />
+	<plugin name="cordova-disable-http-cache" />
 	<plugin name="cordova-plugin-inappbrowser" />
 	<plugin name="cordova-plugin-network-information" />
 	<plugin name="onesignal-cordova-plugin" />
