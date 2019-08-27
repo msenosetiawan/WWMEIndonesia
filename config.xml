@@ -1,9 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<<<<<<< HEAD
 <widget id="com.ayomulaionline.wwmeindonesia" version="2.0.190827" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-=======
-<widget id="com.ayomulaionline.wwmeindonesia" version="2.0.190819" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
->>>>>>> 34ac49601d928d66de6588eb9d32e44d198601cc
 	<name>WWME Indonesia</name>
 	<description>Aplikasi Resmi Komunitas Worldwide Marriage Encounter Indonesia</description>
 	<author email="halo@ayomulai.online" href="https://ayomulai.online">Michael Seno Setiawan</author>
